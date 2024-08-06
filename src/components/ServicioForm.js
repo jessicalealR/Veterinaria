@@ -5,14 +5,14 @@ const ServicioForm = ({ servicio, onSave, onCancel }) => {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [precio, setPrecio] = useState('');
-  const [fechaCita, setFechaCita] = useState(''); // Nuevo estado para la fecha de la cita
+  const [fechaCita, setFechaCita] = useState('');
 
   useEffect(() => {
     if (servicio) {
       setNombre(servicio.nombre || '');
       setDescripcion(servicio.descripcion || '');
       setPrecio(servicio.precio || '');
-      setFechaCita(servicio.fechaCita || ''); // Inicializa el estado con la fecha de la cita si existe
+      setFechaCita(servicio.fechaCita || '');
     }
   }, [servicio]);
 

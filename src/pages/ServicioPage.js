@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import ServicioForm from '../components/ServicioForm';  // Asegúrate de importar el formulario
 
 // Lista de servicios (esto normalmente vendría de una API)
 const servicios = [
@@ -12,7 +13,6 @@ const servicios = [
 const ServicioPage = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [fechaCita, setFechaCita] = useState('');
 
   const handleSelectService = (service) => {
     setSelectedService(service);
@@ -22,13 +22,11 @@ const ServicioPage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedService(null);
-    setFechaCita('');
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
+  const handleSave = (newServiceData) => {
     // Aquí puedes manejar el guardado de la cita, por ejemplo, enviando la fecha a un servidor
-    console.log('Cita agendada:', selectedService, fechaCita);
+    console.log('Cita agendada:', selectedService, newServiceData.fechaCita);
     handleCloseModal();
   };
 
@@ -55,20 +53,11 @@ const ServicioPage = () => {
             <Modal.Title>Agendar Cita para {selectedService.nombre}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form onSubmit={handleSave}>
-              <Form.Group controlId="formFechaCita">
-                <Form.Label>Fecha de Cita</Form.Label>
-                <Form.Control
-                  type="date"
-                  value={fechaCita}
-                  onChange={(e) => setFechaCita(e.target.value)}
-                  required
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Agendar Cita
-              </Button>
-            </Form>
+            <ServicioForm
+              servicio={selectedService}
+              onSave={handleSave}
+              onCancel={handleCloseModal}
+            />
           </Modal.Body>
         </Modal>
       )}
