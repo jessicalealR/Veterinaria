@@ -1,49 +1,77 @@
 import React, { useState } from 'react';
-import ServicioForm from '../components/ServicioForm';
-import { Container, ListGroup, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
+
+// Lista de servicios (esto normalmente vendría de una API)
+const servicios = [
+  { id: 1, nombre: 'Vacunación', precio: 50 },
+  { id: 2, nombre: 'Desparasitacion', precio: 30 },
+  { id: 3, nombre: 'Esterilización', precio: 80 },
+  // Agrega más servicios según sea necesario
+];
 
 const ServicioPage = () => {
-  const [servicios, setServicios] = useState([]);
-  const [editingServicio, setEditingServicio] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [fechaCita, setFechaCita] = useState('');
 
-  const addServicio = (servicio) => {
-    setServicios([...servicios, servicio]);
-    setEditingServicio(null);
+  const handleSelectService = (service) => {
+    setSelectedService(service);
+    setShowModal(true);
   };
 
-  const deleteServicio = (index) => {
-    setServicios(servicios.filter((_, i) => i !== index));
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedService(null);
+    setFechaCita('');
   };
 
-  const editServicio = (index) => {
-    setEditingServicio({ ...servicios[index], index });
-  };
-
-  const handleSave = (servicio) => {
-    if (editingServicio) {
-      const updatedServicios = servicios.map((s, i) => (i === editingServicio.index ? servicio : s));
-      setServicios(updatedServicios);
-      setEditingServicio(null);
-    } else {
-      addServicio(servicio);
-    }
+  const handleSave = (e) => {
+    e.preventDefault();
+    // Aquí puedes manejar el guardado de la cita, por ejemplo, enviando la fecha a un servidor
+    console.log('Cita agendada:', selectedService, fechaCita);
+    handleCloseModal();
   };
 
   return (
-    <Container>
-      <h1>Gestión de Servicios</h1>
-      <ServicioForm servicio={editingServicio} onSave={handleSave} />
-      <ListGroup>
-        {servicios.map((servicio, index) => (
-          <ListGroup.Item key={index}>
-            <h5>{servicio.nombre}</h5>
-            <p>{servicio.descripcion}</p>
-            <p>${servicio.precio}</p>
-            <Button variant="warning" onClick={() => editServicio(index)}>Editar</Button>
-            <Button variant="danger" onClick={() => deleteServicio(index)}>Eliminar</Button>
-          </ListGroup.Item>
+    <Container className="my-4">
+      <Row>
+        {servicios.map((service) => (
+          <Col md={4} className="mb-4" key={service.id}>
+            <Button
+              variant="info"
+              className="w-100 text-center"
+              onClick={() => handleSelectService(service)}
+            >
+              <h5>{service.nombre}</h5>
+              <p>Precio: ${service.precio}</p>
+            </Button>
+          </Col>
         ))}
-      </ListGroup>
+      </Row>
+
+      {selectedService && (
+        <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Agendar Cita para {selectedService.nombre}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={handleSave}>
+              <Form.Group controlId="formFechaCita">
+                <Form.Label>Fecha de Cita</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={fechaCita}
+                  onChange={(e) => setFechaCita(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Agendar Cita
+              </Button>
+            </Form>
+          </Modal.Body>
+        </Modal>
+      )}
     </Container>
   );
 };

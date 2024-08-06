@@ -37,8 +37,11 @@ const MascotaPage = () => {
         {mascotas.map((mascota, index) => (
           <ListGroup.Item key={index}>
             <h5>{mascota.nombre}</h5>
-            <p>{mascota.especie}</p>
-            <p>{mascota.edad} años</p>
+            <p>Especie: {mascota.especie}</p>
+            <p>Edad: {mascota.edad} años</p>
+            <p>Raza: {mascota.raza}</p>
+            <p>Peso: {mascota.peso} kg</p>
+            <p>Procedimiento: {mascota.procedimiento}</p>
             <Button variant="warning" onClick={() => editMascota(index)}>Editar</Button>
             <Button variant="danger" onClick={() => deleteMascota(index)}>Eliminar</Button>
           </ListGroup.Item>

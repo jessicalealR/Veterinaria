@@ -48,4 +48,4 @@ const HistoriaClinicaPage = () => {
   );
 };
 
-export default HistoriaClinicaPage
+export default HistoriaClinicaPage;

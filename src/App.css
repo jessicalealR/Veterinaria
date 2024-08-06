@@ -1,0 +1,114 @@
+/* Global CSS */
+
+/* General Styles */
+body {
+  background-color: #d6eff3; /* Alice Blue */
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(167, 70, 5, 0.1);
+  padding: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Card Styles */
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  height: 100%; /* Ensure cards take full height */
+  background-color: #eeebe8; /* Light Gray */
+  max-width: 250px; /* Set a maximum width for smaller cards */
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  height: 200px; /* Adjusted to a smaller height */
+  object-fit: cover;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  color: #007bff; /* Bootstrap Primary Blue */
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+}
+
+button {
+  margin-top: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #f8f9fa; /* Light Gray */
+  min-height: 100vh;
+  padding-top: 20px;
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px;
+}
+
+/* Button Colors */
+.btn-primary {
+  background-color: #17a2b8;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Secondary Gray */
+  border: none;
+}
+
+.btn-success {
+  background-color: #17a2b8; /* Success Green */
+  border: none;
+}
+
+.btn-info {
+  background-color: #6c757d; /* Info Cyan */
+  border: none;
+}
+
+.btn-warning {
+  background-color: #6c757d; /* Warning Yellow */
+  border: none;
+}
+
+.btn-danger {
+  background-color: #6c757d; /* Danger Red */
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-success:hover,
+.btn-info:hover,
+.btn-warning:hover,
+.btn-danger:hover {
+  opacity: 0.8;
+}
