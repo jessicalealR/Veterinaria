@@ -19,6 +19,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
+
+        
     },
     "eslintConfig": {
         "extends": [
@@ -37,6 +39,7 @@
             "last 1 firefox version",
             "last 1 Microsoft Edge version"
         ]
+        
     },
     "engines": {
         "node": "20.x"
